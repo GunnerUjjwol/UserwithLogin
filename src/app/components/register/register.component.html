@@ -1,0 +1,191 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<div align="center">
+    <div class="row">
+        <div class="mx-auto col-sm-6">
+
+            <!-- form user info -->
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">{{registerType}}</h4>
+                </div>
+                <div class="card-body">
+                    <form #f="ngForm" (ngSubmit)="onClickSubmit()" class="form" role="form" autocomplete="off">
+                        
+                        <input type="hidden" name="id" [(ngModel)]="user.userId">
+
+                        <div class="form-group row has-error" [class.has-error]="firstNameControl.invalid && firstNameControl.touched">
+                            <label class="col-lg-3 col-form-label control-label" for="firstname">First Name</label>
+                            <div class="col-lg-9">
+                                <input required id="firstname" class="form-control" type="text" name="firstname" pattern="[a-zA-Z ]*" [(ngModel)]="user.firstName"
+                                    [ngClass]="{'is-invalid':firstNameControl.errors && firstNameControl.touched}" #firstNameControl="ngModel">
+                                    <span [hidden]="!firstNameControl.errors?.required" class="invalid-feedback text-danger">
+                                        First Name is required!
+                                    </span>
+                                    <span [hidden]="!firstNameControl.errors?.pattern" class="invalid-feedback text-danger">
+                                        First name should only contain alphabetical characters!
+                                    </span>
+        
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label control-label" for="middlename">Middle Name</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" name="middlename" [(ngModel)]="user.middleName" pattern="[a-zA-Z ]*" [ngClass]="{'is-invalid':middleNameControl.errors && middleNameControl.touched}"
+                                    #middleNameControl="ngModel">
+                                    <span [hidden]="!middleNameControl.errors?.pattern" class="invalid-feedback text-danger">
+                                        Middle name should only contain alphabetical characters!
+                                    </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label control-label" for="lastname">Last Name</label>
+                            <div class="col-lg-9">
+
+                                <input required="true" class="form-control" type="text" name="lastname" pattern="[a-zA-Z ]*" [(ngModel)]="user.lastName" [ngClass]="{'is-invalid':lastNameControl.errors && lastNameControl.touched}"
+                                    #lastNameControl="ngModel">
+                                    <span [hidden]="!lastNameControl.errors?.required" class="invalid-feedback text-danger">
+                                        Last Name is required!
+                                    </span>
+                                    <span [hidden]="!lastNameControl.errors?.pattern" class="invalid-feedback text-danger">
+                                        Last name should only contain alphabetical characters!
+                                    </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label control-label" for="dob">Date of Birth</label>
+                            <div class="col-lg-9">
+                                <input required class="form-control" type="date" name="dob" [(ngModel)]="user.dateOfBirth" [ngClass]="{'is-invalid':dobControl.errors && dobControl.touched}"
+                                    #dobControl="ngModel">
+                                    <span [hidden]="!dobControl.errors?.required" class="invalid-feedback text-danger">
+                                        Date of Birth is required!
+                                    </span>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label control-label" for="district">District</label>
+                            <div class="col-lg-9">
+                                <select id="district" required class="form-control" size="0" name="district" [(ngModel)]="selectedD" [ngClass]="{'is-invalid':districtControl.errors && districtControl.touched}"
+                                    #districtControl="ngModel">
+                                    <option value="{{d.districtId}}" *ngFor="let d of district">{{d.districtName}}</option>
+                                </select>
+                                <span [hidden]="!districtControl.errors?.required" class="invalid-feedback text-danger">
+                                    District is required!
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label control-label" for="address">Address</label>
+                            <div class="col-lg-9">
+                                <input required class="form-control" type="text" name="address" [(ngModel)]="user.address" [ngClass]="{'is-invalid':addressControl.errors && addressControl.touched}"
+                                    #addressControl="ngModel">
+                                    <span [hidden]="!addressControl.errors?.required" class="invalid-feedback text-danger">
+                                        Address of Birth is required!
+                                    </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label control-label" for="gender">Gender</label>
+                            <div class="col-lg-3">
+
+                                <div class="radio">
+                                    <label><input type="radio" name="gender" [(ngModel)]="user.gender" value="Male" checked>Male</label>
+                                    &nbsp;
+                                    <label><input type="radio" name="gender" [(ngModel)]="user.gender" value="Female">Female</label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label control-label" for="blood">Blood Type</label>
+                            <div class="col-lg-9">
+                                <select id="blood" required class="form-control" name="bloodType" [(ngModel)]="selectedB" [ngClass]="{'is-invalid':bloodTypeControl.errors && bloodTypeControl.touched}"
+                                    #bloodTypeControl="ngModel">
+                                    <option value="{{b.bloodGroupId}}" *ngFor="let b of bloodGroup">{{b.bloodType}}</option>
+                                </select>
+                                <span [hidden]="!bloodTypeControl.errors?.required" class="invalid-feedback text-danger">
+                                    Blood Type is required!
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label control-label" for="phone">Phone Number</label>
+                            <div class="col-lg-9">
+                                <input required class="form-control" type="number" name="phone" pattern=".{9,10}" [(ngModel)]="user.phoneNo" [ngClass]="{'is-invalid':phoneControl.errors && phoneControl.touched}"
+                                    #phoneControl="ngModel">
+                                    <span [hidden]="!phoneControl.errors?.required" class="invalid-feedback text-danger">
+                                        Phone Number is required!
+                                    </span>
+                                    <span [hidden]="!phoneControl.errors?.pattern" class="invalid-feedback text-danger">
+                                        Phone Number is invalid!
+                                    </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label control-label" for="email">Email</label>
+                            <div class="col-lg-9">
+                                <input required class="form-control" type="email" name="email" [(ngModel)]="user.email" [ngClass]="{'is-invalid':emailControl.errors && emailControl.touched}"
+                                    #emailControl="ngModel" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?">
+                                <span [hidden]="!emailControl.errors?.required" class="invalid-feedback text-danger">
+                                    Email is required!
+                                </span>
+                                <span [hidden]="!emailControl.errors?.pattern" class="invalid-feedback text-danger">
+                                    Email is invalid!
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label control-label" for="password">Password</label>
+                            <div class="col-lg-9">
+                                <input required class="form-control" type="password" name="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" [(ngModel)]="user.password" [ngClass]="{'is-invalid':passwordControl.errors && passwordControl.touched}"
+                                    #passwordControl="ngModel">
+                                    <span [hidden]="!passwordControl.errors?.required" class="invalid-feedback text-danger">
+                                        Password is required!
+                                    </span>
+                                    <span [hidden]="!passwordControl.errors?.pattern" class="invalid-feedback text-danger">
+                                        Password must have UpperCase, LowerCase, Number/SpecialChar and minimum 8 Chars!
+                                    </span>
+                            </div>
+                        </div>
+
+                        <input class="form-control" type="hidden" name="entryDate" [(ngModel)]="user.entryDate">
+
+
+                        <!-- <div class="form-group row">
+                                  <div class="col-lg-9">
+                                      <input class="form-control" type="hidden" name="expDate" [(ngModel)]="expDate">
+                                  </div>
+                              </div> -->
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label control-label"></label>
+                            <div class="col-lg-9">
+                                <button class="btn btn-danger" type="reset">Reset</button>
+                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                <button class="btn btn-success" type="submit" [disabled]="f.invalid">Submit</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /form user info -->
+
+        </div>
+    </div>
+</div>

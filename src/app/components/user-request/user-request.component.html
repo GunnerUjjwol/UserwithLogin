@@ -1,0 +1,35 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<h2 class="text-center text-uppercase text-secondary mb-0">Blood Requests</h2>
+
+<div class="container">
+    <hr>
+    <h2 align="center" class="blink" style="color: green" *ngIf="!request.status">{{message}}</h2>
+    <h2 align="center" class="blink" style="color: #F44336" *ngIf="request.status">{{message}}</h2>
+   <ul>
+    <li class="card card-body text-dark bg-light mb-2" *ngIf="request.status">
+            <!-- style="background-color: #f44336" -->
+            <h3 class="card-header">Your Request</h3>
+            <ul class="list-group text-dark">
+                <li class="list-group-item"><b>Blood Request Id : </b> {{request.bloodRequestId}}</li>
+                <li class="list-group-item"><b>Blood Group : </b> {{request.bloodGroup.bloodType}}</li>
+                <li class="list-group-item"><b>Pint :</b> {{request.pint}}</li>
+            </ul>
+            <div class="wrapper">
+                <br>
+                <button class="btn btn-success" style="width: 80px" (click)="updateRequest(request)">Update</button>&nbsp;&nbsp;
+                <button class="btn btn-info" (click)="deleteRequest(request)">Delete</button>
+            </div>
+        </li>
+
+    </ul>
+
+<div [hidden]="request.bloodRequestId">
+    <h2 style="color: #F44336" class="blink" align="center">You haven't made any request yet!</h2>
+</div>
+
+</div>
+

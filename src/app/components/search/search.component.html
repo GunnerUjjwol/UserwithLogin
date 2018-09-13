@@ -1,0 +1,67 @@
+<br>
+<br>
+<br>
+<section class="search" id="search">
+  <div class="container">
+    <h2 class="text-center text-uppercase text-secondary mb-0">{{requestType}}</h2>
+    <hr class="star-dark mb-5">
+    <div class="col-xs-1" align="center">
+      <form #f="ngForm" (ngSubmit)="requestForm();f.reset()">
+        <div class="control-group" style="width: 300px;">
+          <div class="form-group  controls mb-0 pb-2">
+
+            <input type="hidden" name="bloodRequestId" [(ngModel)]="bloodRequest.bloodRequestId">
+
+            <h3>Blood Type*</h3>
+            <select name="bloodGroup" class="form-control" [(ngModel)]="selectType">
+              <option required value="{{b.bloodGroupId}}" *ngFor="let b of bloodGroup">{{b.bloodType}}</option>
+
+            </select>
+          </div>
+
+          <div class="control-group" style="width: 300px;">
+            <div class="form-group  controls mb-0 pb-2">
+              <h3>Pint*</h3>
+              <input required type="number" name="pint" class="form-control" [(ngModel)]="bloodRequest.pint" [ngClass]="{'is-invalid':pintControl.errors && pintControl.touched}"
+               #pintControl="ngModel">
+              <span [hidden]="!pintControl.errors?.required" class="invalid-feedback text-danger">
+                Pint is required!
+            </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group" style="width: 300px;">
+          <div class="form-group  controls mb-0 pb-2">
+            
+            <input required type="checkbox" name="status" [(ngModel)]="bloodRequest.status">I have read and agree to abide by the terms and conditions <br>
+
+          </div>
+        </div>
+        <br>
+        <div id="success"></div>
+        <div class="form-group">
+          <button type="submit" [disabled]="f.invalid" class="btn btn-danger btn-xl" id="sendMessageButton" data-toggle="modal" data-target="#exampleModalLong1">REQUEST</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+        <div class="card-body"> 
+          <h5 class="card-title text-center">Your request has been sent to Admin</h5>
+          
+         </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+</div>

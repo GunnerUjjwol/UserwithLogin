@@ -1,0 +1,21 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<h2 class="text-center text-uppercase text-secondary mb-0">Upcoming Events</h2>
+
+<div class="container">
+<ul class="list-unstyled mb-2"><!-- *ngif="loaded && users?.length > 0" -->
+<li class="card card-body text-white mb-2" style="background-color: #f44336" *ngFor="let e of event"><!-- *ngFor="let user of users" -->
+<h3 class="card-header">{{e.eventTitle}}</h3>
+<ul class="list-group text-dark">
+<li class="list-group-item"><b>Date:</b> {{e.eventDate}}</li>
+<li class="list-group-item"><b>Address:</b> {{e.eventAddress}}</li>
+<li class="list-group-item"><b>Time:</b> {{e.eventTime}}</li>
+<li class="list-group-item"><b>Description:</b> {{e.eventDescription}}</li>
+</ul>
+</li>
+</ul>
+
+</div>

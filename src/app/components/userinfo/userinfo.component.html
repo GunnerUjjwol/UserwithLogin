@@ -1,0 +1,21 @@
+<div class="container">
+    <ul class="list-unstyled mb-2" style="margin-top: 120px">
+        <li class="card card-body text-dark bg-light">
+            <h2 align="center">Your Details</h2>
+            <h3 class="card-header">{{user.firstName}} {{user.middleName}} {{user.lastName}}</h3>
+            <ul class="list-group text-dark">
+                <li class="list-group-item"><b>Date of Birth:</b> {{user.dateOfBirth}}</li>
+                <li class="list-group-item"><b>District:</b> {{user.district.districtName}}</li>
+                <li class="list-group-item"><b>Address:</b> {{user.address}}</li>
+                <li class="list-group-item"><b>Gender:</b> {{user.gender}}</li>
+                <li class="list-group-item"><b>Blood Type:</b> {{user.bloodGroup.bloodType}}</li>
+                <li class="list-group-item"><b>Phone Number:</b> {{user.phoneNo}}</li>
+                <li class="list-group-item"><b>Email:</b> {{user.email}}</li>
+                <div class="ml-auto">
+                    <br>
+                    <button class="btn btn-success" (click)="updateUser(user)">Update</button>
+                </div>
+            </ul>
+        </li>
+    </ul>
+</div>
